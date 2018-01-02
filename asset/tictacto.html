@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <script src="js/bootstrap.min.js"></script>
+<style>
+    .border{
+        width: 600px;
+        height: 450px;
+        background: pink;
+        position:absolute;
+        margin-left:6%;
+        box-shadow: 0 15px 40px rgba(0,0,0,1.5);
+    }
+    .container{
+         width: 800px;
+            height: 650px;
+          border-color: mediumpurple;
+            background: lightblue;
+             box-shadow: 0 15px 40px rgba(6,2,1,1.5);
+    }
+    table{
+
+        margin-left: 29%;
+    }
+    .square{
+      height: 60px;
+        width: 90px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 22pt;
+        color: blue;
+    }
+    button{
+        height: 50px;
+        width: 100px;
+        margin-left: 40%;
+        color: wheat;
+    }
+    body{
+     height: 850px;
+        width: 1150px;
+    }
+</style>
+    <script>
+ function startGame() {
+   document.turn;
+   document.turn=prompt("which turn you want x or 0 !!");
+   setMessage(document.turn+ "  gets to start!!!");
+   for(var i=1;i<=9;i++){
+       clearGame(i);
+   }
+ }
+function setMessage(msg)
+{
+ document.getElementById("message").innerText=msg;
+ }
+ function nextMove(square) {
+     if(square.innerText==""){
+   square.innerText=document.turn;
+     turnAnother();
+     }
+     else{
+     setMessage("It's already been used !!");
+     }
+ }
+
+ function turnAnother(){
+ if(forWinner(document.turn)){
+   setMessage("Congratulation "+document.turn+" you won the game !!");
+ }
+     else if(document.turn=="x"){
+         document.turn="0";
+         setMessage("Its "+document.turn+" Turn!!");
+     }
+     else {
+         document.turn="x";
+          setMessage("Its "+document.turn+" Turn!!");
+     }
+ }
+ function eachCell(num) {
+     return document.getElementById("cell"+num).innerText;
+ }
+ function rowCheck(a,b,c,move) {
+     var result=false;
+     if(eachCell(a)==move &&eachCell(b)==move && eachCell(c)==move){
+         result=true;
+     }
+      return result;
+ }
+ function forWinner(move) {
+    var result;
+    if(rowCheck(1,2,3,move)||rowCheck(4,5,6,move)||rowCheck(7,8,9,move)||rowCheck(1,4,7,move)||rowCheck(2,5,8,move)||rowCheck(3,6,9,move)||
+    rowCheck(1,5,9,move)||rowCheck(3,5,7,move)){
+    result=true;
+    }
+      return result;
+ }
+function clearGame(num) {
+   document.getElementById("cell"+num).innerText="";
+}
+    </script>
+</head>
+<body onload="startGame();" background="game.jpg">
+     <h1 class="text-center" style="margin-top: 110px"><img src="1.png" height="100" width="250"></h1><br><br>
+<div class="container">
+    <h2 class="text-center" style="font-weight: bold"><i>Welcome to my tic tac toe game!!!!</i> </h2>
+    <br>
+          <!--  <label><i>personName1</i></label>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<label><i>personName2</i></label><br>
+            <input id="sp" type="text" class="text-light" style="background: gray">&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input id="sd" type="text"class="text-light" style="background: gray">-->
+
+             <br>
+             <br>
+        <div class="border">
+            <br>
+             <br>
+             <br>
+           <h2><div id="message"class="text-center text-light" style="background: green "><i style="font-weight: bold" > start now!!!</i></div></h2>
+            <br>
+            <br>
+            <table border="5" class="table-hover" style="color: #1e7e34">
+                <tr>
+                    <td id="cell1" class="square"onclick="nextMove(this);"></td>
+                     <td id="cell2" class="square "onclick="nextMove(this);"></td>
+                     <td id="cell3" class="square "onclick="nextMove(this);"></td>
+                </tr>
+                 <tr>
+                     <td id="cell4" class="square "onclick="nextMove(this);"></td>
+                     <td id="cell5" class="square " onclick="nextMove(this);"></td>
+                     <td id="cell6" class="square" onclick="nextMove(this);"></td>
+                </tr>
+                 <tr>
+                     <td id="cell7" class="square"onclick="nextMove(this);"></td>
+                     <td id="cell8" class="square " onclick="nextMove(this);"></td>
+                     <td id="cell9" class="square "onclick="nextMove(this);"></td>
+                </tr>
+            </table>
+            <br>
+          <button type="button" style="background:lightgray"> <a href="javascript:startGame();">start again</a></button>
+        </div>
+</div>
+</body>
+</html>
